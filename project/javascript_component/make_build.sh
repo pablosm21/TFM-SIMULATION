@@ -1,6 +1,12 @@
 #!/bin/bash
-mkdir /home/psmolina/TFM_PRUEBA/project/javascript_component/build
-cp /home/psmolina/TFM_PRUEBA/project/javascript_component/index.js /home/psmolina/TFM_PRUEBA/project/javascript_component/build
-cp /home/psmolina/TFM_PRUEBA/project/javascript_component/startup.sh /home/psmolina/TFM_PRUEBA/project/javascript_component/build
+set -eu
 
-tar -czvf /home/psmolina/TFM_PRUEBA/project/javascript_component/javascript_component.tar.gz -C /home/psmolina/TFM_PRUEBA/project/javascript_component/build .
+PROJECT_ROOT="${CURRENT_PROJECT:-/home/psmolina/TFM-SIMULATION/project}"
+COMPONENT_ROOT="${PROJECT_ROOT}/javascript_component"
+BUILD_DIR="${COMPONENT_ROOT}/build"
+
+mkdir -p "${BUILD_DIR}"
+cp "${COMPONENT_ROOT}/index.js" "${BUILD_DIR}"
+cp "${COMPONENT_ROOT}/startup.sh" "${BUILD_DIR}"
+
+tar -czvf "${COMPONENT_ROOT}/javascript_component.tar.gz" -C "${BUILD_DIR}" .
